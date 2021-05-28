@@ -29,14 +29,14 @@ def log_decorator(_func=None):
                            'file_name_override': os.path.basename(py_file_caller.filename) }
 
             """ Before to the function execution, log function details."""
-            logger_obj.info(f"Arguments: {formatted_arguments} - Begin function")
+            logger_obj.info(f"Arguments: {formatted_arguments} - Begin function", extra=extra_args)
             try:
                 """ log return value from the function """
                 value = func(self, *args, **kwargs)
-                logger_obj.info(f"Returned: - End function {value!r}")
+                logger_obj.info(f"Returned: - End function {value!r}", extra=extra_args)
             except:
                 """log exception if occurs in function"""
-                logger_obj.error(f"Exception: {str(sys.exc_info()[1])}")
+                logger_obj.error(f"Exception: {str(sys.exc_info()[1])}", extra=extra_args)
                 raise
             # Return function value
             return value
